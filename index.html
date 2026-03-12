@@ -1,0 +1,97 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Attendance Calculator</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background:#f2f2f2;
+}
+
+.container{
+    margin-top:80px;
+    background:white;
+    padding:30px;
+    width:350px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+input{
+    padding:8px;
+    margin:10px;
+    width:200px;
+}
+
+button{
+    padding:10px 20px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+h2{
+    color:#333;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Attendance Calculator</h2>
+
+<p>Total Classes Conducted</p>
+<input type="number" id="total">
+
+<p>Classes Attended</p>
+<input type="number" id="attended">
+
+<br><br>
+
+<button onclick="calculate()">Calculate</button>
+
+<h3 id="result"></h3>
+<h3 id="bunk"></h3>
+
+</div>
+
+<script>
+
+function calculate(){
+
+var total = parseInt(document.getElementById("total").value);
+var attended = parseInt(document.getElementById("attended").value);
+
+var percentage = (attended/total)*100;
+
+document.getElementById("result").innerHTML =
+"Attendance: " + percentage.toFixed(2) + "%";
+
+if(percentage >= 75){
+var bunk = Math.floor((attended - 0.75*total)/0.75);
+document.getElementById("bunk").innerHTML =
+"You can bunk " + bunk + " classes";
+}
+else{
+var need = Math.ceil((0.75*total - attended)/(1-0.75));
+document.getElementById("bunk").innerHTML =
+"You need to attend " + need + " classes";
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
